@@ -24,9 +24,17 @@ var getUserEmail = function () {
     return rtn;
 }
 
-var setUserEmail = function(val){
+var setUserEmail = function (val) {
     var d = new Date();
     d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
-    var expires = "expires="+d.toUTCString();
+    var expires = "expires=" + d.toUTCString();
     document.cookie = "email" + "=" + val + ";" + expires + ";path=/";
+}
+
+var deleteNoteConfirm = function () {
+    var r = confirm("Delete this Note!");
+    if (r == true) {
+        // txt = "You pressed OK!";
+        deleteNote();
+    } 
 }
