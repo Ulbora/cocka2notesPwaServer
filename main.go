@@ -26,9 +26,15 @@ func main() {
 }
 
 func config(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	fmt.Println("Origin: ", r.Header.Get("Origin"))
+	fmt.Println("Host: ", r.Host)
+	fmt.Println("URL: ", r.URL)
 	var data string
 	if os.Getenv("COCKA2NOTE_CONFIG") != "" {
-		data = os.Getenv("COCKA2NOTE_CONFIG")
+		if r.Header.Get("Origin") == "www.cocka2notes.com" || r.Host == "localhost:8080" {
+			data = os.Getenv("COCKA2NOTE_CONFIG")
+		}
 	} else {
 		data = "ewogICAidXJsIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwIiwKICAgImFwaUtleSI6IkdERzY1MUdGRDY2RkQxNjE1MXNzczY1MWY2NTFmZjY1NTU1ZGRmaGprbHl5NSIKfQ=="
 	}
