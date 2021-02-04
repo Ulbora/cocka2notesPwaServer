@@ -32,7 +32,7 @@ func config(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("URL: ", r.URL)
 	var data string
 	if os.Getenv("COCKA2NOTE_CONFIG") != "" {
-		if r.Header.Get("Origin") == "www.cocka2notes.com" || r.Host == "localhost:8080" {
+		if r.Header.Get("Origin") == "www.cocka2notes.com" || r.Host == "www.cocka2notes.com" || r.Host == "localhost:8080" {
 			data = os.Getenv("COCKA2NOTE_CONFIG")
 		}
 	} else {
